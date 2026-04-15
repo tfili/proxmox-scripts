@@ -4,34 +4,29 @@ These scripts are meant to be run on the nodes directly.
 
 ## How to sync
 
-Run this once to create the bin directory
+Create a `/root/bin` directory if it doesn't exist. This is where all setup steps assume the scripts are located.
 
-```
-cd ~
-mkdir bin
-cd bin
+```bash
+mkdir /root/bin
 ```
 
-Run this whenever you want to sync up from github
+Run this from the `/root/bin` whenever you want to sync up from github
 
-```
-wget https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/cleanup-backups.sh
-wget https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/google-backup.sh
-wget https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/lxc-update.sh
-chmod 755 *.sh
+```bash
+curl https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/install.sh | bash
 ```
 
 ## Configure Backups
 
 In `/etc/vzdump.conf` add the following line at the bottom
 
-```
+```yaml
 script: /root/bin/google-backup.sh
 ```
 
 Run the following to install rclone
 
-```
+```bash
 apt update
 apt install rclone -y
 ```
@@ -53,6 +48,7 @@ This will copy the container backups to `Backups/Proxmox/[NODE NAME]/[CONTAINER]
 This needs to be run manually
 
 It accepts the following options
+
 - `--start(-s)`: Container ID to start updating
 - `--end(-s)`: Contaner ID to stop updating
 - `--ignore(-i)`: Container IDs to ignore (can be specified multiple times)
