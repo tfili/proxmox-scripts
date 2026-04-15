@@ -20,7 +20,7 @@ rclone ls GoogleDrive:/Backups/Proxmox/$NODENAME/ | awk '{print $2}' | sort -r |
 
     if (( current_count > COUNT )); then
         echo "Deleting old backup: $file"
-        rclone delete GoogleDrive:/Backups/Proxmox/"$file" --drive-use-trash=false
+        rclone delete GoogleDrive:/Backups/Proxmox/$NODENAME/"$file" --drive-use-trash=false
     else
         echo "Keeping backup: $file"
     fi
