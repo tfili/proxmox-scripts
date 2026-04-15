@@ -15,10 +15,28 @@ cd bin
 Run this whenever you want to sync up from github
 
 ```
-wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/cleanup-backups.sh
-wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/google-backup.sh
-wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/lxc-update.sh
+wget https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/cleanup-backups.sh
+wget https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/google-backup.sh
+wget https://raw.githubusercontent.com/tfili/proxmox-scripts/refs/heads/main/nodes/lxc-update.sh
+chmod 755 *.sh
 ```
+
+## Configure Backups
+
+In `/etc/vzdump.conf` add the following line at the bottom
+
+```
+script: /root/bin/google-backup.sh
+```
+
+Run the following to install rclone
+
+```
+apt update
+apt install rclone -y
+```
+
+Authenticate to Google Drive by following https://rclone.org/drive/. Name the connection `GoogleDrive`.
 
 ## Files
 
@@ -28,11 +46,7 @@ This will be run by `google-backup.sh` when a job ends.
 
 ### google-backup.sh
 
-In `/etc/vzdump.conf` add the following line at the bottom
-
-```
-script: /root/bin/google-backup.sh
-```
+This will copy the container backups to `Backups/Proxmox/[NODE NAME]/[CONTAINER]` in the Google Drive you are authenticated to.
 
 ### lxc-update.sh
 
