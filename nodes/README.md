@@ -4,6 +4,14 @@ These scripts are meant to be run on the nodes directly.
 
 ## How to sync
 
+```
+wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/cleanup-backups.sh
+wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/google-backup.sh
+wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/lxc-update.sh
+```
+
+## Files
+
 ### cleanup-backups.sh
 
 This will be run by `google-backup.sh` when a job ends.
