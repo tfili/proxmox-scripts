@@ -31,7 +31,7 @@ apt update
 apt install rclone -y
 ```
 
-Authenticate to Google Drive by following https://rclone.org/drive/. Name the connection `GoogleDrive`.
+Authenticate to Google Drive by following [the RClone instructions](https://rclone.org/drive/). You must name the connection `GoogleDrive` for the scripts to work.
 
 ## Files
 
