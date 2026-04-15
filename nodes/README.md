@@ -4,6 +4,16 @@ These scripts are meant to be run on the nodes directly.
 
 ## How to sync
 
+Run this once to create the bin directory
+
+```
+cd ~
+mkdir bin
+cd bin
+```
+
+Run this whenever you want to sync up from github
+
 ```
 wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/cleanup-backups.sh
 wget https://github.com/tfili/proxmox-scripts/blob/main/nodes/google-backup.sh
